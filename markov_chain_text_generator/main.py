@@ -20,6 +20,7 @@ class Node:
         :param node: str
         """
         self.node = node
+        self.edges = {}
 
 
 class MarkovChain:
@@ -30,14 +31,20 @@ class MarkovChain:
     An object from this class should be able to give a prediction of the n next words when given
     a starting point. The starting point have to be a word within the training dataset.
     """
-    def __init__(self, text_path):
+    def __init__(self):
         """
-        Constructor takes the path to the text file as a string and trains a Markov Chain Text -
-        Generator object from this.
-        :param text_path: str
+        Constructor takes no arguments.
         """
-        self.text_path = text_path
+        self.file_path = None
+        self.nodes = {}
         self.some_val = 0
+
+    def train_path(self, file_path):
+        """
+        Takes a file path as input and trains the Markov Chain on the data contained in the file.
+        :param file_path: str
+        """
+        pass
 
     def predict(self, starting_node, n):
         """

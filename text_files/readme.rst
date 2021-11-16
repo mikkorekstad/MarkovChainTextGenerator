@@ -1,0 +1,1 @@
+This directory contains some text files that can be used to train the Markov Chain Text Generation Algorithm.
