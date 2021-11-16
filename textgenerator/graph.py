@@ -4,23 +4,9 @@ __author__ = 'Mikko Rekstad'
 __email__ = 'mikkreks@nmbu.no'
 
 """
-This module contain the main function in the Markov Chain Text Generator.
+This module contain the MarkovChain class. A MarkovChain object is in this case a graph that can
+be used to calculate probabilities and predict the n next words after receiving training data.
 """
-
-
-class Node:
-    """
-    In the Markov Chain Text Generator, the nodes (or vertices) represent words. The connections
-    (or the edges) in this graph algorithm represents the probability weights.
-    """
-
-    def __init__(self, node):
-        """
-        Constructor of class Node takes parameter node (name of the word) in string form.
-        :param node: str
-        """
-        self.node = node
-        self.edges = {}
 
 
 class MarkovChain:
@@ -55,7 +41,3 @@ class MarkovChain:
         :return: array
         """
         pass
-
-
-if __name__ == '__main__':
-    print('markov chains are cool')

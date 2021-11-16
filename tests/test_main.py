@@ -4,7 +4,7 @@ __author__ = 'Mikko Rekstad'
 __email__ = 'mikkreks@nmbu.no'
 
 import pytest
-import markov_chain_text_generator.main as chain
+import textgenerator.main as chain
 
 
 def test_markov_chain_text_generator():
