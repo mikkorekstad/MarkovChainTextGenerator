@@ -1,0 +1,1 @@
+This directory contains example(s) of how to use the markov chain text generator program.

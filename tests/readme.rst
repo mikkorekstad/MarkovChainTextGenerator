@@ -1,0 +1,1 @@
+This directory contains tests to make sure that the markov chain text generator program works as desired.

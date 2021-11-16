@@ -1,0 +1,1 @@
+This directory contains the module(s) / script(s) necessary to run the markov chain text generator program!
