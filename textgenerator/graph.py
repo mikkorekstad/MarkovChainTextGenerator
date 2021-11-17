@@ -8,6 +8,10 @@ This module contain the MarkovChain class. A MarkovChain object is in this case 
 be used to calculate probabilities and predict the n next words after receiving training data.
 """
 
+from file_reader import create_file_reader
+from node import Node
+import random
+
 
 class MarkovChain:
     """
@@ -17,22 +21,29 @@ class MarkovChain:
     An object from this class should be able to give a prediction of the n next words when given
     a starting point. The starting point have to be a word within the training dataset.
     """
-    def __init__(self):
+    def __init__(self, case_sensitivity=False):
         """
         Constructor takes no arguments.
         """
         self.file_path = None
+        self.case_sensitivity = case_sensitivity
         self.nodes = {}
-        self.some_val = 0
 
     def train_path(self, file_path):
         """
         Takes a file path as input and trains the Markov Chain on the data contained in the file.
         :param file_path: str
         """
-        pass
+        file_reader = create_file_reader(file_path=file_path, case_sensitive=self.case_sensitivity)
+        previous_word = None
+        for word in file_reader:
+            if previous_word:
+                self.nodes[previous_word].update_connection(word)
+            if word not in self.nodes:
+                self.nodes[word] = Node(word)
+            previous_word = word
 
-    def predict(self, starting_node, n):
+    def predict(self, starting_node, n=1):
         """
         Takes in a word in string format as a starting node, and an integer value n to predict the
         n next words.
@@ -40,4 +51,20 @@ class MarkovChain:
         :param n: int
         :return: array
         """
-        pass
+        if starting_node not in self.nodes:
+            raise ValueError(f'Starting word: {starting_node} is not in the training data!')
+        if type(n) != int:
+            raise ValueError('Please insert n as an integer value!')
+
+        predictions = []
+        current_word = starting_node
+        for i in range(n):
+            probabilities, nodes = self.nodes[current_word].get_probabilities()
+            if not probabilities:
+                print(f'The word {current_word} has no subsequent connections.')
+                return predictions
+            prediction = random.choices(nodes, probabilities)[0]
+            predictions.append(prediction)
+            current_word = prediction
+
+        return predictions

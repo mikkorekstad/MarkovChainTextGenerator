@@ -39,3 +39,12 @@ class FileReader:
             for word in res:
                 yield word
 
+
+def create_file_reader(file_path=None, case_sensitive=False):
+    """
+    This function returns an iterable rather than a generator object.
+    :param file_path: str
+    :param case_sensitive: bool
+    :return: iterable object
+    """
+    return iter(FileReader(file_path=file_path, case_sensitive=case_sensitive))

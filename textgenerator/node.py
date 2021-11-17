@@ -37,15 +37,12 @@ class Node:
         :return: array of probabilities, array of nodes
         """
         if not self.connections:
-            print('This node has no connections!')
             return [], []
         else:
             total_connections = sum(self.connections.values())
-            print(total_connections)
             nodes = []
             probabilities = []
             for node, count in self.connections.items():
                 nodes.append(node)
                 probabilities.append(count / total_connections)
-                print(f'appended{count / total_connections}')
             return probabilities, nodes
