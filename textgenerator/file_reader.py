@@ -23,11 +23,19 @@ class FileReader:
         :param file_path: str
         :param case_sensitive: bool
         """
-        pass
+        if case_sensitive:
+            self.case_sensitive = True
+        else:
+            self.case_sensitive = False
+        self.file_path = file_path
 
-    def __next__(self):
+    def __iter__(self):
         """
         Iterate to the next value in this generator object.
         :return: str
         """
-        pass
+        for row in open(self.file_path, 'r'):
+            res = row.split()
+            for word in res:
+                yield word
+
