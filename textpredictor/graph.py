@@ -8,8 +8,8 @@ This module contain the MarkovChain class. A MarkovChain object is in this case 
 be used to calculate probabilities and predict the n next words after receiving training data.
 """
 
-from file_reader import create_file_reader
-from node import Node
+from .file_reader import create_file_reader
+from .node import Node
 import random
 
 

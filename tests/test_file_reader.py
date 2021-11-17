@@ -5,7 +5,7 @@ __email__ = 'mikkreks@nmbu.no'
 
 import pytest
 import unittest
-import textgenerator.file_reader as file_reader
+import textpredictor.file_reader as file_reader
 
 
 class TestingFileReader(unittest.TestCase):

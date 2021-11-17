@@ -4,7 +4,7 @@ __author__ = 'Mikko Rekstad'
 __email__ = 'mikkreks@nmbu.no'
 
 import pytest
-import textgenerator.node as node
+import textpredictor.node as node
 
 
 @pytest.fixture
