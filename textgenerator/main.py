@@ -17,5 +17,9 @@ def main(file_path, case_sensitivity=False):
 
 
 if __name__ == '__main__':
-    graph = main('../text_files/numbers.txt')
-    print(graph.predict('0', 100))
+    # graph = main('../text_files/numbers.txt')
+    # print(graph.predict('0', 100))
+
+    graph2 = main('../text_files/hello_world2.txt')
+    graph2.show_nodes()
+    # print(graph2.predict('Hello', 40))

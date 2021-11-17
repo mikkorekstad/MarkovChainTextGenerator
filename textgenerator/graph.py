@@ -43,6 +43,15 @@ class MarkovChain:
                 self.nodes[word] = Node(word)
             previous_word = word
 
+    def show_nodes(self):
+        """Print out information about the nodes and the associated probabilities."""
+        for node_name, node in self.nodes.items():
+            probabilities, nodes = node.get_probabilities()
+            print(f'{node_name}:')
+            for probability, node_ in zip(probabilities, nodes):
+                print(f'{node_} {probability * 100} % ')
+            print('-' * 20)
+
     def predict(self, starting_node, n=1):
         """
         Takes in a word in string format as a starting node, and an integer value n to predict the
@@ -51,11 +60,16 @@ class MarkovChain:
         :param n: int
         :return: array
         """
+
+        # Check user input
+        if not self.case_sensitivity:
+            starting_node = starting_node.lower()
         if starting_node not in self.nodes:
             raise ValueError(f'Starting word: {starting_node} is not in the training data!')
         if type(n) != int:
             raise ValueError('Please insert n as an integer value!')
 
+        # Create predictions
         predictions = []
         current_word = starting_node
         for i in range(n):
@@ -66,5 +80,4 @@ class MarkovChain:
             prediction = random.choices(nodes, probabilities)[0]
             predictions.append(prediction)
             current_word = prediction
-
         return predictions

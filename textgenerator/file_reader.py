@@ -9,6 +9,7 @@ the text file in subsequent order. The __next__ function should return the next 
 The iterator should be a generator.
 """
 
+import re
 
 class FileReader:
     """
@@ -29,13 +30,29 @@ class FileReader:
             self.case_sensitive = False
         self.file_path = file_path
 
+    def filter_string(self, row):
+        """
+        Remove all special characters, and turn the string into a list of words. If the FileReader
+        is case-sensitive, turn all characters to lowercase.
+        :param row: str
+        :return: list
+        """
+
+        pattern = r'[^A-Za-z0-9- ]+'
+        row = re.sub(pattern, '', row)
+        # ''.join(entry for entry in row if entry.isalnum())
+        if not self.case_sensitive:
+            row = row.lower()
+        res = row.split()
+        return res
+
     def __iter__(self):
         """
         Iterate to the next value in this generator object.
         :return: str
         """
         for row in open(self.file_path, 'r'):
-            res = row.split()
+            res = self.filter_string(row)
             for word in res:
                 yield word
 
